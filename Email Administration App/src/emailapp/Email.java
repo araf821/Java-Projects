@@ -3,28 +3,33 @@ package emailapp;
 import java.util.Scanner;
 
 public class Email {
-
+    private String email;
     private String fName;
     private String lName;
     private String password;
     private int passwordLength = 12;
     private String department;
-    private int inboxCapacity;
+    private int inboxCapacity = 150;
     private String altEmail;
 
     // Constructor to receive the first and last name
     public Email(String fName, String lName) {
         this.fName = fName;
         this.lName = lName;
-        System.out.println("- Email Generated -\nFor " + this.fName + " " + this.lName);
 
         // Setting the dept
         this.department = setDepartment();
-        System.out.println("Department is " + this.department + ".");
 
         // Generating a random password
         this.password = setPassword(passwordLength);
-        System.out.println("Password is " + this.password + ".");
+
+        // Put together the email:
+        if (this.department.equals("N/A")) {
+            this.email = this.fName.toLowerCase() + "." + this.lName.toLowerCase() + "@" + "company.com";
+        } else {
+            this.email = this.fName.toLowerCase() + "." + this.lName.toLowerCase() + "@" +
+                    this.department.toLowerCase() + ".company.com";
+        }
     }
 
     // Prompt user for their department
@@ -51,23 +56,37 @@ public class Email {
         return new String(password);
     }
 
-    // Set the mailbox capacity
-    private int setCapacity(int cap) {
-
-        return 0;
+    // Change the password
+    public void changePassword(String password) {
+        this.password = password;
     }
 
+    public int getInboxCapacity() {
+        return this.inboxCapacity;
+    }
+
+    // Set the mailbox capacity
+    public void setInboxCapacity(int cap) {
+        this.inboxCapacity = cap;
+    }
+
+    public String getAltEmail() {
+        return this.altEmail;
+    }
 
     // Set alternate email
-    private String setAltEmail() {
-
-        return "";
+    public void setAltEmail(String em) {
+        this.email = em;
     }
 
-    // Change the password
-    private String changePassword() {
+    public String getName() {
+        return this.fName + " " + this.lName;
+    }
 
-        return "";
+    public String getAllInfo() {
+        return "Name: " + this.fName + " " + this.lName +
+                "\nEmail: " + this.email + "\nDepartment: " + this.department +
+                "\nInbox Capacity: " + this.inboxCapacity;
     }
 
 }
