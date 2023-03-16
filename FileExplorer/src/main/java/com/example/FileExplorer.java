@@ -14,7 +14,7 @@ public class FileExplorer {
 		File[] files = fileManager.listFiles(path);
 
 		for (File file : files) {
-			
+
 			if (file.isDirectory()) {
 				System.out.println(file.getName() + "/");
 			} else {

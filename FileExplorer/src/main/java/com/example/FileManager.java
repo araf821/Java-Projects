@@ -8,7 +8,7 @@ public class FileManager {
 		File directory = new File(path);
 
 		if (!directory.exists() || !directory.isDirectory()) {
-			throw new IllegalArgumentException("Invalid directory: " + path);
+			System.out.println("Invalid Directory! :((");
 		}
 
 		return directory.listFiles();
